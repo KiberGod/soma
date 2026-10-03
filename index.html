@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Soma - your digital assistant</title>
+    <meta
+      name="description"
+      content="Soma is a desktop assistant that keeps an eye on your computer, reminds you of scheduled tasks, and now and then simply watches you."
+    />
+    <meta name="theme-color" content="#010c12" />
+    <meta property="og:title" content="Soma - your digital assistant" />
+    <meta property="og:description" content="A desktop assistant for Windows, macOS and Linux." />
+    <meta property="og:image" content="https://kibergod.github.io/soma/assets/soma.webp" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="container nav__inner">
+        <a class="nav__brand" href="#top">
+          <img src="assets/soma.webp" alt="" width="34" height="34" />
+          <span>Soma</span>
+        </a>
+        <nav class="nav__links">
+          <a href="#features" data-i18n="nav.features">Features</a>
+          <a href="#chat" data-i18n="nav.chat">Chat</a>
+          <a href="#download" data-i18n="nav.download">Download</a>
+          <a href="#developer" data-i18n="nav.developer">Developer</a>
+        </nav>
+        <div class="lang-switch" role="radiogroup" aria-label="Language">
+          <button type="button" data-lang="en" role="radio">EN</button>
+          <button type="button" data-lang="ru" role="radio">RU</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__text">
+            <h1 data-i18n-html="hero.title">Meet <span class="accent">Soma</span>, your digital assistant</h1>
+            <p class="hero__lead" data-i18n="hero.lead">
+              She keeps an eye on your computer, reminds you of tasks on your schedule, and now and then simply
+              watches you.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" id="hero-download" href="#download">
+                <span id="hero-download-label" data-i18n="download.button">Download</span>
+              </a>
+              <a class="btn btn--ghost" href="#download" data-i18n="hero.otherVersions">Other versions</a>
+            </div>
+            <p class="hero__note" id="hero-note"></p>
+            <!-- Filled in by app.js from the actual releases. -->
+            <div class="platforms" id="platforms" hidden></div>
+          </div>
+          <div class="hero__visual">
+            <div class="theme-stack" aria-hidden="true">
+              <img class="shot" data-shot="chat" alt="" />
+              <img class="shot" data-shot="theme-blue" alt="" />
+              <img class="shot" data-shot="theme-violet" alt="" />
+              <img class="shot" data-shot="theme-pink" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="section" id="features">
+        <div class="container">
+          <h2 class="section__title" data-i18n="features.title">What Soma can do</h2>
+          <p class="section__lead" data-i18n="features.lead">
+            Everything lives in one small window - and in notifications that show up right when they matter.
+          </p>
+
+          <article class="feature">
+            <div class="feature__text">
+              <span class="feature__tag" data-i18n="features.modules.tag">Modules</span>
+              <h3 data-i18n="features.modules.title">She watches your computer for you</h3>
+              <p data-i18n="features.modules.text">
+                RAM load, hardware temperature, the internet connection, and whether some program is secretly using
+                your camera or microphone. Set the thresholds, the check frequency and the messages - Soma lets you
+                know when something's off.
+              </p>
+            </div>
+            <div class="feature__visual feature__visual--pair">
+              <img class="shot" data-shot="modules" alt="" loading="lazy" />
+              <img class="shot shot--offset" data-shot="module-ram" alt="" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature feature--reverse">
+            <div class="feature__text">
+              <span class="feature__tag" data-i18n="features.planner.tag">Task planner</span>
+              <h3 data-i18n="features.planner.title">Reminders on your schedule</h3>
+              <p data-i18n="features.planner.text">
+                A workout every Friday, a birthday once a year, a doctor's visit on a set day - Soma reminds you of it all on time. Repeat once, on chosen dates, or every hour, day, week, month or year, and let her remind you a little early so nothing catches you off guard.
+              </p>
+            </div>
+            <div class="feature__visual feature__visual--pair">
+              <img class="shot" data-shot="planner" alt="" loading="lazy" />
+              <img class="shot shot--offset" data-shot="planner-task" alt="" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature__text">
+              <span class="feature__tag" data-i18n="features.notifications.tag">Notifications</span>
+              <h3 data-i18n="features.notifications.title">Never misses a beat</h3>
+              <p data-i18n="features.notifications.text">
+                Neat neon toasts in the corner and monitor you choose, 18 sounds to pick from, and a right click to
+                read a long message in full without opening the app.
+              </p>
+            </div>
+            <div class="feature__visual">
+              <img class="shot shot--pushes" data-shot="pushes" alt="" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature feature--reverse">
+            <div class="feature__text">
+              <span class="feature__tag" data-i18n="features.character.tag">Character</span>
+              <h3 data-i18n="features.character.title">Is she alive?</h3>
+              <p data-i18n="features.character.text">
+                Soma narrates her work in a console log, shows what she's busy with right under her name, and every now and then comments on what you do.
+              </p>
+            </div>
+            <div class="feature__visual feature__visual--pair">
+              <img class="shot" data-shot="logs" alt="" loading="lazy" />
+              <img class="shot shot--offset" data-shot="about" alt="" loading="lazy" />
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature__text">
+              <span class="feature__tag" data-i18n="features.style.tag">Customization</span>
+              <h3 data-i18n="features.style.title">Make her your own</h3>
+              <p data-i18n="features.style.text">
+                Six neon themes, an avatar to match each one, and three languages. Pick the notification sound, the corner and even the monitor they show up on.
+              </p>
+            </div>
+            <div class="feature__visual">
+              <img class="shot" data-shot="customization" alt="" loading="lazy" />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Demo chat -->
+      <section class="section" id="chat">
+        <div class="container demo">
+          <div class="demo__text">
+            <span class="feature__tag" data-i18n="demo.tag">Try it</span>
+            <h2 class="section__title" data-i18n="demo.title">Chat with Soma</h2>
+            <p class="section__lead" data-i18n="demo.lead">
+              She already knows a thing or two about you and your system. Maybe it's time to get to know each other better?
+            </p>
+            <p class="demo__privacy" data-i18n="demo.privacy">
+              Everything she finds out stays on your computer: nothing is sent anywhere.
+            </p>
+          </div>
+          <!-- Soma's window, drawn in HTML; app.js plays the conversation. -->
+          <div class="demo-window" id="demo-window">
+            <div class="demo-window__header">
+              <img src="assets/soma.webp" alt="" class="demo-window__avatar" width="40" height="40" />
+              <div class="demo-window__identity">
+                <span class="demo-window__name">Soma</span>
+                <span class="demo-window__status" id="demo-status"></span>
+              </div>
+            </div>
+            <div class="demo-window__messages" id="demo-messages" aria-live="polite"></div>
+            <div class="demo-window__replies" id="demo-replies"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Download -->
+      <section class="section section--download" id="download">
+        <div class="container">
+          <h2 class="section__title" data-i18n="download.title">Download Soma</h2>
+          <div class="download-card" id="download-card">
+            <img src="assets/soma.webp" alt="" class="download-card__avatar" width="88" height="88" />
+            <div class="download-card__body">
+              <span class="download-card__label" id="download-card-label"></span>
+              <span class="download-card__title" id="download-card-title"></span>
+              <span class="download-card__meta" id="download-card-meta"></span>
+            </div>
+            <div class="download-card__actions" id="download-card-actions"></div>
+          </div>
+
+          <h3 class="versions__title" data-i18n="download.allVersions">All versions</h3>
+          <div class="versions" id="versions">
+            <p class="versions__empty" data-i18n="download.loading">Loading versions…</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Developer -->
+      <section class="section" id="developer">
+        <div class="container developer">
+          <div class="developer__card">
+            <h2 class="section__title" data-i18n="developer.title">Developer</h2>
+            <p data-i18n="developer.text">
+              Soma is made by one person - kiber_god. Found a bug, have an idea, or just want to say hi? Write to me.
+            </p>
+            <div class="developer__links">
+              <a class="chip" href="https://github.com/KiberGod" target="_blank" rel="noopener">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+                </svg>
+                kiber_god
+              </a>
+              <a class="chip" href="https://t.me/kiber_god" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                  <path d="M21.9 4.1 18.6 19.6c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.2l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 2.7c.9-.3 1.7.2 1.4 1.4Z" />
+                </svg>
+                Telegram
+              </a>
+              <a class="chip" href="https://github.com/KiberGod/soma/issues" target="_blank" rel="noopener">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+                  <circle cx="8" cy="8" r="6.3" stroke="currentColor" stroke-width="1.5" />
+                  <path d="M8 4.8v3.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  <circle cx="8" cy="11" r="0.9" fill="currentColor" />
+                </svg>
+                <span data-i18n="developer.issue">Report a problem</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <span>© <span id="year"></span> Soma · kiber_god</span>
+        <a href="https://github.com/KiberGod/soma/releases" target="_blank" rel="noopener" data-i18n="footer.releases"
+          >Releases on GitHub</a
+        >
+      </div>
+    </footer>
+
+    <script src="i18n.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

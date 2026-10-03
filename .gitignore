@@ -1,0 +1,5 @@
+# IDE
+.idea/
+
+# Raw screenshots — the site uses the optimized copies in assets/shots/.
+screenshots/
