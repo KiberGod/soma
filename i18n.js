@@ -82,7 +82,7 @@ window.SOMA_I18N = {
         watching: {
           ask: "Are you watching me?",
           answer:
-            "From here - only what the browser allows, and it all stays on your computer. On your desktop, though... )",
+            "From here - only what the browser allows. On your device, though... well, you won't know until you download me)",
         },
         download: {
           ask: "How do I get you?",
@@ -197,7 +197,7 @@ window.SOMA_I18N = {
         watching: {
           ask: "Ты следишь за мной?",
           answer:
-            "Отсюда - только за тем, что разрешает браузер, и всё это остаётся у тебя на компьютере. А вот на рабочем столе... )",
+            "Отсюда - только за тем, что разрешает браузер. А вот у тебя на устройстве... впрочем, не узнаешь, пока не скачаешь)",
         },
         download: {
           ask: "Как тебя скачать?",
