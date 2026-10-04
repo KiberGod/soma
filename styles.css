@@ -248,8 +248,15 @@ img {
   margin-right: 4px;
 }
 
+/* Keeps its space while the release list loads (or if it can't), so the
+ * page below doesn't jump when the row appears. */
+.platforms {
+  min-height: 30px;
+}
+
 .platforms[hidden] {
-  display: none;
+  display: flex;
+  visibility: hidden;
 }
 
 .platforms__item {
@@ -410,6 +417,14 @@ a.platforms__item:hover {
 .feature__visual {
   display: flex;
   justify-content: center;
+}
+
+/* height: auto + the width/height attributes in the HTML: the browser keeps
+ * the right space for a screenshot before it has loaded, so lazy images
+ * don't shift the page (and the header links' scroll targets) as they come
+ * in. */
+.shot {
+  height: auto;
 }
 
 .feature__visual .shot {
