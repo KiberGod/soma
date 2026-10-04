@@ -586,10 +586,35 @@ a.platforms__item:hover {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  /* A slim neon scrollbar instead of the system one (which on Windows
+   * brings a light track and arrow buttons). */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--accent-rgb), 0.35) transparent;
   padding: 18px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.demo-window__messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.demo-window__messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.demo-window__messages::-webkit-scrollbar-thumb {
+  background: rgba(var(--accent-rgb), 0.3);
+  border-radius: 999px;
+}
+
+.demo-window__messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--accent-rgb), 0.5);
+}
+
+.demo-window__messages::-webkit-scrollbar-button {
+  display: none;
 }
 
 .demo-bubble {
@@ -654,6 +679,11 @@ a.platforms__item:hover {
   min-height: 64px;
   padding: 14px 18px;
   border-top: 1px solid var(--line);
+}
+
+/* Once every question has been asked, the bar goes away. */
+.demo-window__replies:empty {
+  display: none;
 }
 
 .demo-reply {

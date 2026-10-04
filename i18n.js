@@ -65,7 +65,6 @@ window.SOMA_I18N = {
       locale: (language, offset) =>
         `Your system speaks ${language}${offset ? `, and your time zone is ${offset}` : ""}.`,
       theme: (dark) => (dark ? "And you're on a dark theme - approved 🖤" : "A light theme? Bold ☀️"),
-      battery: (level, charging) => `Battery at ${level}%${charging ? ", and you're plugged in" : ""}.`,
       time: (time, hour) => {
         const remark =
           hour < 5 ? "Can't sleep?" : hour < 12 ? "Good morning! ☀️" : hour >= 18 ? "Good evening 🌙" : "";
@@ -108,7 +107,6 @@ window.SOMA_I18N = {
       loadFailed: "Couldn't load the list of versions.",
       openReleases: "Open releases on GitHub",
       latestBadge: "latest",
-      noteDetected: (os) => `We picked the installer for ${os}. Need another one? See all versions below.`,
       noteUnsupported: "Soma isn't available for your system yet - see all versions below.",
       kinds: {
         msi: "Windows installer (.msi)",
@@ -180,7 +178,6 @@ window.SOMA_I18N = {
       screen: (w, h, scale) => `Экран ${w}×${h}${scale ? `, масштаб ${scale}%` : ""}.`,
       locale: (language, offset) => `Язык системы - ${language}${offset ? `, часовой пояс ${offset}` : ""}.`,
       theme: (dark) => (dark ? "И у тебя тёмная тема - одобряю 🖤" : "Светлая тема? Смело ☀️"),
-      battery: (level, charging) => `Заряд батареи ${level}%${charging ? ", и ты на зарядке" : ""}.`,
       time: (time, hour) => {
         const remark =
           hour < 5 ? "Не спишь?" : hour < 12 ? "Доброе утро! ☀️" : hour >= 18 ? "Добрый вечер 🌙" : "";
@@ -223,7 +220,6 @@ window.SOMA_I18N = {
       loadFailed: "Не удалось загрузить список версий.",
       openReleases: "Открыть релизы на GitHub",
       latestBadge: "последняя",
-      noteDetected: (os) => `Мы подобрали установщик для ${os}. Нужен другой? Все версии - ниже.`,
       noteUnsupported: "Для твоей системы Сома пока недоступна - все версии ниже.",
       kinds: {
         msi: "Установщик Windows (.msi)",

@@ -219,7 +219,7 @@
 
     if (releasesState === "ready" && files.length) {
       heroBtn.href = files[0].url;
-      heroNote.textContent = d.noteDetected(OS_NAMES[os]);
+      heroNote.textContent = "";
       $("#download-card-title").textContent = `Soma ${latest.version}`;
       $("#download-card-meta").textContent = d.latest(latest.version, formatDate(latest.date));
       files.forEach((f, i) => actions.append(downloadButton(f, i === 0)));
@@ -391,16 +391,6 @@
     };
   }
 
-  async function readBattery() {
-    try {
-      if (!navigator.getBattery) return null;
-      const b = await navigator.getBattery();
-      return { level: Math.round(b.level * 100), charging: b.charging };
-    } catch {
-      return null;
-    }
-  }
-
   const DEMO_TYPING_MS = 900;
   const DEMO_GAP_MS = 500;
   let demoRun = 0;
@@ -477,7 +467,6 @@
     demoStatus(false);
 
     const sys = readSystem();
-    const battery = await readBattery();
     const hour = new Date().getHours();
     const lines = [
       d.hello,
@@ -485,7 +474,6 @@
       sys.width && sys.height ? d.screen(sys.width, sys.height, sys.scale) : "",
       sys.language ? d.locale(sys.language, sys.offset) : "",
       d.theme(sys.dark),
-      battery ? d.battery(battery.level, battery.charging) : "",
       d.time(demoTime(), hour),
       d.outro,
     ].filter(Boolean);
