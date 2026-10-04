@@ -279,11 +279,13 @@
         const files = r.byOs[key] || [];
         if (files.length === 0) col.append(el("span", { class: "release__none", text: "-" }));
         for (const f of files) {
-          const link = el("a", { class: "release__file", href: f.url, rel: "nofollow" }, [
-            el("span", { text: d.kinds[f.kind] }),
-            el("span", { class: "release__size", text: formatSize(f.size) }),
-          ]);
-          col.append(link);
+          // Only the name is the link; the size beside it is plain text.
+          col.append(
+            el("div", { class: "release__file" }, [
+              el("a", { class: "release__file-link", href: f.url, rel: "nofollow", text: d.kinds[f.kind] }),
+              el("span", { class: "release__size", text: formatSize(f.size) }),
+            ]),
+          );
         }
         grid.append(col);
       }
@@ -384,7 +386,6 @@
       browser,
       width: Math.round(screen.width * dpr),
       height: Math.round(screen.height * dpr),
-      scale: dpr !== 1 ? Math.round(dpr * 100) : null,
       language: language ? (lang === "ru" ? language.toLowerCase() : language) : null,
       offset,
       dark: window.matchMedia("(prefers-color-scheme: dark)").matches,
@@ -420,11 +421,20 @@
       el("span", { class: "demo-bubble__time", text: demoTime() }),
     ]);
     if (action) {
+      // On a line of its own, but only as wide as its text.
       const link = el("a", { class: "demo-bubble__action", href: action.href, text: action.label });
-      bubble.append(link);
+      bubble.append(el("div", { class: "demo-bubble__actions" }, [link]));
     }
     box.append(bubble);
-    box.scrollTo({ top: box.scrollHeight, behavior: "smooth" });
+    scrollChatToBottom();
+  }
+
+  /** Keeps the newest message fully in view. Scrolls once the new bubble is
+   * laid out (not right when it's appended), and again whenever the message
+   * area changes size — the reply buttons appearing under it, for one. */
+  function scrollChatToBottom() {
+    const box = $("#demo-messages");
+    requestAnimationFrame(() => box.scrollTo({ top: box.scrollHeight, behavior: "smooth" }));
   }
 
   /** Soma "types" for a moment, then the message appears. Stops quietly if
@@ -471,7 +481,7 @@
     const lines = [
       d.hello,
       sys.os ? d.system(sys.os, sys.browser) : "",
-      sys.width && sys.height ? d.screen(sys.width, sys.height, sys.scale) : "",
+      sys.width && sys.height ? d.screen(sys.width, sys.height) : "",
       sys.language ? d.locale(sys.language, sys.offset) : "",
       d.theme(sys.dark),
       d.time(demoTime(), hour),
@@ -488,6 +498,7 @@
   function setupDemo() {
     const win = $("#demo-window");
     if (!win) return;
+    if ("ResizeObserver" in window) new ResizeObserver(scrollChatToBottom).observe($("#demo-messages"));
     demoStatus(false);
     let started = false;
     const start = () => {

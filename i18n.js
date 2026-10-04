@@ -61,7 +61,7 @@ window.SOMA_I18N = {
       typing: "typing",
       hello: "Hi! I'm Soma 👋",
       system: (os, browser) => (browser ? `I see you're on ${os}, in ${browser}.` : `I see you're on ${os}.`),
-      screen: (w, h, scale) => `Your screen is ${w}×${h}${scale ? `, scaled to ${scale}%` : ""}.`,
+      screen: (w, h) => `Your screen is ${w}×${h}.`,
       locale: (language, offset) =>
         `Your system speaks ${language}${offset ? `, and your time zone is ${offset}` : ""}.`,
       theme: (dark) => (dark ? "And you're on a dark theme - approved 🖤" : "A light theme? Bold ☀️"),
@@ -175,7 +175,7 @@ window.SOMA_I18N = {
       typing: "печатает",
       hello: "Привет! Я Сома 👋",
       system: (os, browser) => (browser ? `Вижу, ты на ${os}, в ${browser}.` : `Вижу, ты на ${os}.`),
-      screen: (w, h, scale) => `Экран ${w}×${h}${scale ? `, масштаб ${scale}%` : ""}.`,
+      screen: (w, h) => `Экран ${w}×${h}.`,
       locale: (language, offset) => `Язык системы - ${language}${offset ? `, часовой пояс ${offset}` : ""}.`,
       theme: (dark) => (dark ? "И у тебя тёмная тема - одобряю 🖤" : "Светлая тема? Смело ☀️"),
       time: (time, hour) => {

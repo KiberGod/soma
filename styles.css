@@ -659,15 +659,28 @@ a.platforms__item:hover {
   color: var(--text-muted);
 }
 
-.demo-bubble__action {
+.demo-bubble__actions {
   flex-basis: 100%;
   margin-top: 4px;
-  color: var(--accent);
-  font-weight: 600;
 }
 
-.demo-bubble__action:hover {
-  text-decoration: underline;
+/* A compact chip — no browser focus ring or tap highlight around it. */
+.demo-bubble__action {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(var(--accent-rgb), 0.12);
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 13px;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease;
+}
+
+.demo-bubble__action:hover,
+.demo-bubble__action:focus-visible {
+  background: rgba(var(--accent-rgb), 0.22);
 }
 
 /* Quick replies in place of the message input. */
@@ -864,10 +877,13 @@ a.platforms__item:hover {
   justify-content: space-between;
   gap: 8px;
   font-size: 14px;
+}
+
+.release__file-link {
   color: var(--accent);
 }
 
-.release__file:hover {
+.release__file-link:hover {
   text-decoration: underline;
 }
 
