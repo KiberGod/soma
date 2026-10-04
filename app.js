@@ -220,8 +220,8 @@
     if (releasesState === "ready" && files.length) {
       heroBtn.href = files[0].url;
       // A beta (the release's "pre-release" mark, set from the app's own
-      // IS_BETA flag) says so under the button and next to its version.
-      heroNote.textContent = latest.prerelease ? d.betaNote : "";
+      // IS_BETA flag) gets a badge next to its version.
+      heroNote.textContent = "";
       const title = $("#download-card-title");
       title.replaceChildren(`Soma ${latest.version}`);
       if (latest.prerelease) title.append(el("span", { class: "beta-badge", text: d.betaBadge }));
