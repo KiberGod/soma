@@ -219,8 +219,12 @@
 
     if (releasesState === "ready" && files.length) {
       heroBtn.href = files[0].url;
-      heroNote.textContent = "";
-      $("#download-card-title").textContent = `Soma ${latest.version}`;
+      // A beta (the release's "pre-release" mark, set from the app's own
+      // IS_BETA flag) says so under the button and next to its version.
+      heroNote.textContent = latest.prerelease ? d.betaNote : "";
+      const title = $("#download-card-title");
+      title.replaceChildren(`Soma ${latest.version}`);
+      if (latest.prerelease) title.append(el("span", { class: "beta-badge", text: d.betaBadge }));
       $("#download-card-meta").textContent = d.latest(latest.version, formatDate(latest.date));
       files.forEach((f, i) => actions.append(downloadButton(f, i === 0)));
       return;
@@ -270,6 +274,7 @@
       const head = el("div", { class: "release__head" }, [
         el("span", { class: "release__version", text: `v${r.version}` }),
         index === 0 ? el("span", { class: "release__badge", text: d.latestBadge }) : null,
+        r.prerelease ? el("span", { class: "beta-badge", text: d.betaBadge }) : null,
         el("span", { class: "release__date", text: formatDate(r.date) }),
       ]);
       const grid = el("div", { class: "release__grid" });
@@ -426,15 +431,40 @@
       bubble.append(el("div", { class: "demo-bubble__actions" }, [link]));
     }
     box.append(bubble);
-    scrollChatToBottom();
+    scrollChatToBottom(true);
   }
 
-  /** Keeps the newest message fully in view. Scrolls once the new bubble is
-   * laid out (not right when it's appended), and again whenever the message
-   * area changes size — the reply buttons appearing under it, for one. */
-  function scrollChatToBottom() {
+  // Whether the chat should keep following new messages. Only the visitor
+  // scrolling up lets go of the bottom (content growing never moves the
+  // position up), and scrolling back down to it picks it up again. While a
+  // finger is on the chat it's left alone entirely: iOS Safari can freeze a
+  // touch scroll that a programmatic one cuts into.
+  const chatFollow = { stuck: true, touching: false, lastTop: 0 };
+
+  /** Keeps the newest message fully in view - once the new bubble is laid
+   * out (not right when it's appended), and again whenever the message area
+   * changes size (the reply buttons appearing under it, for one). `smooth`
+   * only for new messages; a resize just snaps. */
+  function scrollChatToBottom(smooth = false) {
     const box = $("#demo-messages");
-    requestAnimationFrame(() => box.scrollTo({ top: box.scrollHeight, behavior: "smooth" }));
+    requestAnimationFrame(() => {
+      if (!chatFollow.stuck || chatFollow.touching) return;
+      box.scrollTo({ top: box.scrollHeight, behavior: smooth ? "smooth" : "auto" });
+    });
+  }
+
+  function trackChatScroll() {
+    const box = $("#demo-messages");
+    box.addEventListener("scroll", () => {
+      const fromBottom = box.scrollHeight - box.scrollTop - box.clientHeight;
+      if (fromBottom <= 8) chatFollow.stuck = true;
+      else if (box.scrollTop < chatFollow.lastTop - 1) chatFollow.stuck = false;
+      chatFollow.lastTop = box.scrollTop;
+    }, { passive: true });
+    box.addEventListener("touchstart", () => (chatFollow.touching = true), { passive: true });
+    const release = () => (chatFollow.touching = false);
+    box.addEventListener("touchend", release, { passive: true });
+    box.addEventListener("touchcancel", release, { passive: true });
   }
 
   /** Soma "types" for a moment, then the message appears. Stops quietly if
@@ -459,6 +489,7 @@
       btn.addEventListener("click", async () => {
         used.add(key);
         box.replaceChildren();
+        chatFollow.stuck = true; // asking means wanting to see the answer
         addBubble("user", reply.ask);
         await sleep(400);
         if (run !== demoRun) return;
@@ -472,6 +503,7 @@
   async function playDemo() {
     const run = ++demoRun;
     const d = t().demo;
+    chatFollow.stuck = true;
     $("#demo-messages").replaceChildren();
     $("#demo-replies").replaceChildren();
     demoStatus(false);
@@ -498,7 +530,8 @@
   function setupDemo() {
     const win = $("#demo-window");
     if (!win) return;
-    if ("ResizeObserver" in window) new ResizeObserver(scrollChatToBottom).observe($("#demo-messages"));
+    trackChatScroll();
+    if ("ResizeObserver" in window) new ResizeObserver(() => scrollChatToBottom()).observe($("#demo-messages"));
     demoStatus(false);
     let started = false;
     const start = () => {

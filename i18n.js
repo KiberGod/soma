@@ -107,6 +107,8 @@ window.SOMA_I18N = {
       loadFailed: "Couldn't load the list of versions.",
       openReleases: "Open releases on GitHub",
       latestBadge: "latest",
+      betaBadge: "Beta",
+      betaNote: "Soma is in beta - if something goes wrong, let me know.",
       noteUnsupported: "Soma isn't available for your system yet - see all versions below.",
       kinds: {
         msi: "Windows installer (.msi)",
@@ -220,6 +222,8 @@ window.SOMA_I18N = {
       loadFailed: "Не удалось загрузить список версий.",
       openReleases: "Открыть релизы на GitHub",
       latestBadge: "последняя",
+      betaBadge: "Beta",
+      betaNote: "Сома сейчас в бета-версии - если что-то пойдёт не так, напиши мне.",
       noteUnsupported: "Для твоей системы Сома пока недоступна - все версии ниже.",
       kinds: {
         msi: "Установщик Windows (.msi)",
